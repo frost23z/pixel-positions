@@ -1,16 +1,13 @@
 <x-layout>
     <div class="space-y-10">
-        <section class="flex flex-col gap-y-6 text-center">
-            <h1 class="font-bold text-4xl">Let's Find Your Next Job</h1>
+        <x-page-heading>Let's Find Your Next Job</x-page-heading>
 
-            <form action="" class="">
-                <input
-                    type="text"
-                    placeholder="Job title, keywords, or company"
-                    class="rounded-xl bg-white/5 border-white/10 px-5 py-4 border w-full max-w-lg focus:border-blue-600 placeholder-gray-400 focus:outline-none transition-colors duration-300"
-                />
-            </form>
+        <section>
+            <x-forms.form action="/search" class="w-full">
+                <x-forms.input :label="false" name="query" placeholder="Job title, keywords, or company"/>
+            </x-forms.form>
         </section>
+
         <x-section>
             <x-slot:heading>
                 Featured Jobs

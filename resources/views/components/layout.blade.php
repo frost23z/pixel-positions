@@ -26,8 +26,9 @@
                 <a href="">Resources</a>
             </div>
             @auth
-                <div>
+                <div class="space-x-6 font-bold">
                     <a href="/jobs/create">Post a job</a>
+                    {{--                    <a href="{{ route('logout') }}">Log Out</a>--}}
                 </div>
             @endauth
             @guest

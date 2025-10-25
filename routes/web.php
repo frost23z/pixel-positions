@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\JobController::class, 'index'])->name('index');
+
+Route::get('/search', SearchController::class)->name('search');
+Route::get('tags/{tag:name}', TagController::class)->name('tags.search');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [App\Http\Controllers\RegisteredUserController::class, 'create'])->name('register');
