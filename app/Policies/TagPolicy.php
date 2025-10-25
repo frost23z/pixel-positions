@@ -12,7 +12,7 @@ class TagPolicy
 
     public function viewAny(User $user): bool
     {
-
+        return true;
     }
 
     public function view(User $user, Tag $tag): bool

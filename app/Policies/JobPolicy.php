@@ -12,7 +12,7 @@ class JobPolicy
 
     public function viewAny(User $user): bool
     {
-
+        return true;
     }
 
     public function view(User $user, Job $job): bool

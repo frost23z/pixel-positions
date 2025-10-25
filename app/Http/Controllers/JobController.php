@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\JobRequest;
 use App\Models\Job;
+use App\Models\Tag;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class JobController extends Controller
@@ -12,9 +13,12 @@ class JobController extends Controller
 
     public function index()
     {
-        $this->authorize('viewAny', Job::class);
+//        $this->authorize('viewAny', Job::class);
 
-        return Job::all();
+        return view('jobs.index', [
+            'jobs' => Job::all()->groupBy('featured'),
+            'tags' => Tag::all(),
+        ]);
     }
 
     public function store(JobRequest $request)
