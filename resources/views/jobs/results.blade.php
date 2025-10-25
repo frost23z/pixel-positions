@@ -2,21 +2,11 @@
     <div class="space-y-10">
         <x-page-heading>Search</x-page-heading>
 
-        <section>
-            <x-forms.form action="/search" class="w-full">
-                <x-forms.input :label="false" name="query" placeholder="Job title, keywords, or company"
-                               :value="$query?? null"/>
-            </x-forms.form>
-        </section>
-
         <x-section>
-            <x-slot:heading>
-                @if(request()->is('*tags*'))
-                    Results for tag "{{ $tag->name }}"
-                @else
-                    Results for "{{ $query }}"
-                @endif
-            </x-slot:heading>
+            <x-search :query="$query ?? null"/>
+        </x-section>
+
+        <x-section :heading="request()->is('*tags*') ? 'Results for tag ' . $tag->name : 'Results for ' . $query">
             <div class="flex flex-wrap gap-3">
                 @foreach($jobs as $job)
                     <x-job-card-wide :$job/>
