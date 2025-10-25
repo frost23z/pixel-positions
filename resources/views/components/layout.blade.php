@@ -15,7 +15,7 @@
     <header>
         <nav class="flex justify-between items-center py-4 border-b border-white/10">
             <div>
-                <a href="">
+                <a href="{{ route('index') }}">
                     <img src="{{Vite::asset('resources/images/logo.svg')}}" alt="Pixel Positions Logo"/>
                 </a>
             </div>
@@ -27,7 +27,7 @@
             </div>
             @auth
                 <div class="space-x-6 font-bold">
-                    <a href="/jobs/create">Post a job</a>
+                    <a href="{{ route('jobs.create') }}">Post a job</a>
                     {{--                    <a href="{{ route('logout') }}">Log Out</a>--}}
                 </div>
             @endauth
