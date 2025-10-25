@@ -25,7 +25,17 @@
                 <a href="">Salaries</a>
                 <a href="">Resources</a>
             </div>
-            <div>Post a job</div>
+            @auth
+                <div>
+                    <a href="/jobs/create">Post a job</a>
+                </div>
+            @endauth
+            @guest
+                <div class="space-x-6 font-bold">
+                    <a href="{{ route('register') }}">Sign Up</a>
+                    <a href="{{ route('login') }}">Log In</a>
+                </div>
+            @endguest
         </nav>
     </header>
     <main class="my-10 max-w-4xl mx-auto">
