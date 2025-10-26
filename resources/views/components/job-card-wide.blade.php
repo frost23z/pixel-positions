@@ -6,7 +6,9 @@
 
     <div class="flex-1 flex flex-col gap-y-1">
         <a href="#" class="text-sm text-gray-400">{{$job->employer->name}}</a>
-        <h3 class="font-bold group-hover:text-blue-600 text-xl transition-colors duration-300">{{$job->title}}</h3>
+        <h3 class="font-bold group-hover:text-blue-600 text-xl transition-colors duration-300">
+            <a href="{{$job->url}}" target="_blank">{{$job->title}}</a>
+        </h3>
         <p class="text-sm text-gray-400 mt-auto">{{$job->salary}}</p>
     </div>
 
