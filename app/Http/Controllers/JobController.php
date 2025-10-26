@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\JobRequest;
 use App\Models\Job;
 use App\Models\Tag;
+use Arr;
+use Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class JobController extends Controller
@@ -13,19 +15,34 @@ class JobController extends Controller
 
     public function index()
     {
-//        $this->authorize('viewAny', Job::class);
-
         return view('jobs.index', [
-            'jobs' => Job::all()->groupBy('featured'),
+            'jobs' => Job::latest()->get()->groupBy('featured'),
             'tags' => Tag::all(),
         ]);
     }
 
     public function store(JobRequest $request)
     {
-        $this->authorize('create', Job::class);
+        $validated = $request->validated();
 
-        return Job::create($request->validated());
+        $validated['featured'] = $request->has('featured');
+
+        $job = Auth::user()->employer->jobs()->create(Arr::except($validated, ['tags']));
+
+        if (!empty($validated['tags'])) {
+            $tags = array_map('trim', explode(',', $validated['tags']));
+            foreach ($tags as $tag) {
+                $tag = Tag::firstOrCreate(['name' => strtolower($tag)]);
+                $job->tag($tag->name);
+            }
+        }
+
+        return redirect()->route('index')->with('success', 'Job posted successfully!');
+    }
+
+    public function create()
+    {
+        return view('jobs.create');
     }
 
     public function show(Job $job)
@@ -51,5 +68,10 @@ class JobController extends Controller
         $job->delete();
 
         return response()->json();
+    }
+
+    public function edit(Job $job)
+    {
+
     }
 }

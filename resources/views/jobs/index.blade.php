@@ -8,7 +8,7 @@
 
         <x-section heading="Featured Jobs">
             <div class="grid lg:grid-cols-3 gap-8">
-                @foreach($jobs[0] as $job)
+                @foreach($jobs[1] as $job)
                     <x-job-card :$job/>
                 @endforeach
             </div>
@@ -24,7 +24,7 @@
 
         <x-section heading="Recent Jobs">
             <div class="flex flex-wrap gap-3">
-                @foreach($jobs[1] as $job)
+                @foreach($jobs[0] as $job)
                     <x-job-card-wide :$job/>
                 @endforeach
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class JobRequest extends FormRequest
 {
@@ -12,10 +13,10 @@ class JobRequest extends FormRequest
             'title' => ['required'],
             'salary' => ['required'],
             'location' => ['required'],
-            'schedule' => ['required'],
-            'url' => ['required'],
-            'featured' => ['boolean'],
-            'employer_id' => ['required', 'exists:employers'],
+            'schedule' => ['required', Rule::in(['Full-time', 'Part-time', 'Contract', 'Temporary', 'Internship'])],
+            'url' => ['required', 'active_url'],
+            'featured' => ['nullable'],
+            'tags' => ['nullable', 'string']
         ];
     }
 
