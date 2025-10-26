@@ -12,6 +12,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/jobs/{job}/edit', [App\Http\Controllers\JobController::class, 'edit'])->name('jobs.edit');
     Route::patch('/jobs/{job}', [App\Http\Controllers\JobController::class, 'update'])->name('jobs.update');
     Route::delete('/jobs/{job}', [App\Http\Controllers\JobController::class, 'destroy'])->name('jobs.destroy');
+
+    Route::delete('/logout', [App\Http\Controllers\SessionController::class, 'destroy'])->name('logout');
 });
 
 Route::get('/jobs/{job}', [App\Http\Controllers\JobController::class, 'show'])->name('jobs.show');
@@ -27,5 +29,3 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [App\Http\Controllers\SessionController::class, 'create'])->name('login');
     Route::post('/login', [App\Http\Controllers\SessionController::class, 'store'])->name('login.store');
 });
-
-Route::post('/logout', [App\Http\Controllers\SessionController::class, 'destroy'])->middleware('auth')->name('logout');

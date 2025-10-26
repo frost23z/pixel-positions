@@ -28,7 +28,11 @@
             @auth
                 <div class="space-x-6 font-bold">
                     <a href="{{ route('jobs.create') }}">Post a job</a>
-                    {{--                    <a href="{{ route('logout') }}">Log Out</a>--}}
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Log Out</button>
+                    </form>
                 </div>
             @endauth
             @guest
