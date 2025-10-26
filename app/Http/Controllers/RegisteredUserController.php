@@ -22,7 +22,7 @@ class RegisteredUserController extends Controller
             'logo' => ['required', File::image()->types(['png', 'jpg', 'jpeg', 'gif', 'webp'])->max(2 * 1024)]
         ]);
 
-        $logoPath = $request->logo->store('logos');
+        $logoPath = $request->logo->store('logos', 'public');
 
         $user = User::create($userAttributes);
 

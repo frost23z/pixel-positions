@@ -13,6 +13,6 @@
                 <x-tag :$tag size="sm"/>
             @endforeach
         </div>
-        <x-employer-logo width='42' height="42"/>
+        <x-employer-logo width='42' height="42" :employer="$job->employer"/>
     </div>
 </x-panel>
